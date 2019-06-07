@@ -26,7 +26,6 @@ function getEndAs(massive) {
 getEndAs(massive);
 
 function generateNavPan() {
-    document.querySelector("#loading").remove();
     var start = document.createElement("div");
     start.innerHTML="«";
     start.setAttribute("onclick", "moderateThenShow(document.querySelector('.btn'))")
