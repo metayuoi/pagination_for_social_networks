@@ -1,7 +1,7 @@
 var elem = document.querySelector(".fave_photos_page_block").cloneNode(true);
 elem.classList.add("navigation_pan");
 document.querySelector(".wall_module").appendChild(elem);
-elem.innerHTML = "<style>.navigation_pan {display: flex;justify-content: space-evenly; font-weight: bold;} .hid {display: none;} #activeButton {background-color: black; color: white;} .navigation_pan div {padding:3px; margin:0;} .btn:hover {color:red}</style>"
+elem.innerHTML = "<style>.navigation_pan {display: flex;justify-content: space-evenly; font-weight: bold;} .hid {display: none;} #activeButton {background-color: black; color: white;} .navigation_pan div {padding:3px; margin:0;} .btn:hover {color:red}</style><div id='loading'>Идёт загрузка...</div>"
 
 
 var massive = [0];
@@ -26,6 +26,7 @@ function getEndAs(massive) {
 getEndAs(massive);
 
 function generateNavPan() {
+	document.querySelector("#loading").remove();
     var start = document.createElement("div");
     start.innerHTML="«";
     start.setAttribute("onclick", "moderateThenShow(document.querySelector('.btn'))")
