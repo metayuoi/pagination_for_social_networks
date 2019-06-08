@@ -1,11 +1,11 @@
 cur.autoList._state = "done";
 
-var navigation_pan = document.querySelector(".page_block_header_inner._header_inner");
-navigation_pan.classList.add("navigation_pan");
+var navigationPan = document.querySelector(".page_block_header_inner._header_inner");
+navigationPan.classList.add("navigation_pan");
 var navigationContainer = document.querySelector(".page_block.bookmark_block .page_block_h2");
 navigationContainer.classList.add("navigation_container");
-document.querySelector(".page_block_header.clear_fix").appendChild(navigation_pan);
-navigation_pan.innerHTML = "<style>.navigation_pan {display: flex;justify-content: space-evenly; font-weight: bold;} .hid {display: none;} #activeButton {background-color: black; color: white;} .navigation_pan div {padding:3px; margin:0;} .btn:hover {color:red} #ui_rmenu_tags_dropdown_list a {display: block; margin-left: 20px; line-height: 2; padding: 20px; color: #777777;}</style>"
+document.querySelector(".page_block_header.clear_fix").appendChild(navigationPan);
+
 
 var massive = [0];
 var gotend = new Event("gotend")
@@ -39,8 +39,8 @@ function generateNavPan(tag) {
     var start = document.createElement("div");
     start.innerHTML="«";
     start.setAttribute("onclick", "moderateThenShow(document.querySelector('.btn'), " +  tag + ")");
-	navigation_pan.innerHTML = "<style>.navigation_pan {display: flex;justify-content: space-evenly; font-weight: bold;} .hid {display: none;} #activeButton {background-color: black; color: white;} .navigation_pan div {padding:3px; margin:0;} .btn:hover {color:red} #ui_rmenu_tags_dropdown_list a {display: block; margin-left: 20px; line-height: 2; color: #777777;}</style>"
-    navigation_pan.appendChild(start);
+	navigationPan.innerHTML = "<style>.navigation_pan {display: flex;justify-content: space-evenly; font-weight: bold;} .hid {display: none;} #activeButton {background-color: black; color: white;border-radius:10px;} .navigation_pan div {padding:3px; margin:0;} .btn:hover {color:red} #ui_rmenu_tags_dropdown_list a {display: block; margin-left: 20px; line-height: 2; color: #777777;}</style>"
+    navigationPan.appendChild(start);
     for (i=0; i<massive.length-1; i++) {
         var btn = document.createElement("div");
         btn.classList.add("btn");
@@ -48,17 +48,18 @@ function generateNavPan(tag) {
         btn.setAttribute("onclick", "moderateThenShow(this, " +  tag + ")");
         btn.setAttribute("data-offset", massive[i]);
         if (i>12) {btn.classList.add("hid")}
-        navigation_pan.appendChild(btn);
+        navigationPan.appendChild(btn);
     }
     var end = document.createElement("div");
     end.innerHTML="»";
     end.setAttribute("onclick", "moderateThenShow(document.querySelectorAll('.btn')[document.querySelectorAll('.btn').length - 1], " +  tag + ")")
-    navigation_pan.appendChild(end);
+    navigationPan.appendChild(end);
 	if (tag==="0") {
 		document.querySelector(".bookmarks_rows").insertBefore(navigationContainer, document.querySelector(".bookmarks_rows").firstChild);
 	}
 	else  {
 		document.querySelector(".page_block_h2").replaceWith(navigationContainer);
+		moderateThenShow(document.querySelector('.btn'), tag)
 	}
 	
 }
